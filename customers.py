@@ -3,6 +3,8 @@
 # MAGIC %md
 # MAGIC ### This is an example
 # MAGIC This notebook creates a dataframe with some sample data that can be used for a quick visualization.
+
+# COMMAND ----------
 %sql
 CREATE TABLE IF NOT EXISTS customers_bronze;
 COPY INTO customers_bronze
