@@ -39,3 +39,9 @@ display(df)
 # Create a view or table
 temp_table_name = "vinhos_no_mundo_csv"
 df.createOrReplaceTempView(temp_table_name)
+
+
+#Play consulting temporary view
+%sql
+/* Query the created temp table in a SQL cell */
+select * from `vinhos_no_mundo_csv`
