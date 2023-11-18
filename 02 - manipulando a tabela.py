@@ -34,4 +34,32 @@ display(clientes)
 
 # COMMAND ----------
 
+# MAGIC %sql
+# MAGIC --Preparando uma agregação com os dados, gráfico de barra
+# MAGIC select pais, sum(preco) as total_vendido from vinho
+# MAGIC where preco > 0
+# MAGIC group by pais
+# MAGIC order by total_vendido desc
+# MAGIC limit 10
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC --Preparando uma agregação com os dados, gráfico de setores
+# MAGIC select pais, variante, sum(preco) as total_vendido from vinho
+# MAGIC where preco > 0
+# MAGIC group by pais,variante
+# MAGIC order by total_vendido desc
+# MAGIC limit 10
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC --Preparando análise de dispersão, gráfico de dispersão
+# MAGIC select pontos, preco from vinho
+
+# COMMAND ----------
+
+
+
 
