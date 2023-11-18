@@ -34,3 +34,8 @@ df = spark.read.format(file_type).schema(Record_schema) \
 .option("sep", delimiter) \
 .load(file_location)
 display(df)
+
+#Create Temp VIEW
+# Create a view or table
+temp_table_name = "vinhos_no_mundo_csv"
+df.createOrReplaceTempView(temp_table_name)
