@@ -23,7 +23,7 @@
 # COMMAND ----------
 
 # MAGIC %python
-# MAGIC #lendo dois arquivos JSON
+# MAGIC #lendo dois ou mais arquivos JSON
 # MAGIC df3.spark.read.json("/databricks-datasets/structured-streaming/events/*.json")
 # MAGIC df3.show()
 
