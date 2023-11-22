@@ -29,4 +29,13 @@
 
 # COMMAND ----------
 
+# MAGIC %python
+# MAGIC #gravaçã dos dados que estão no dataframe para json em um único arquivo
+# MAGIC df3.write.json("/FileStore/tables/JSON/eventos.json")
 
+# COMMAND ----------
+
+# MAGIC %python
+# MAGIC spark.sql("CREATE OR REPLACE TEMPORARY VIEW view_evento USING json OPTIONS" +
+# MAGIC     " (path '/FileStore/tables/JSON/eventos.json')")
+# MAGIC     spark.sql("select action from view_evento").show()
