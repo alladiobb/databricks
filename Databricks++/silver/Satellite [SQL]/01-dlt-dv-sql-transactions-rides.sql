@@ -17,4 +17,16 @@ AS SELECT
     vehicles.hk_vehicle_id,
     payments.hk_txn_id,
     rides.id,
-    
+    rides.cpf,
+    rides.vehicle_id,
+    rides.txn_id,
+    current_timestamp() AS load_ts,
+    "mongodb" AS source
+FROM STREAM(live.raw_vw_py_mongodb_rides) rides
+INNER JOIN STREAM(live.hub_users) AS users
+    ON rides.cpf = users.cpf
+    INNER JOIN STREAM(live.hub_vehicles) AS vehicles
+    ON rides.vehicle_id = vehicles.id
+    INNER JOIN STREAM(live.hub_payments) AS payments
+    ON rides.txn_id = payments.txn_id
+
