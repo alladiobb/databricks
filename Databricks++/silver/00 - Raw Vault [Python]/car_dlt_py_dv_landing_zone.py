@@ -12,7 +12,7 @@ def raw_vw_by_postgres_vehicle():
         A DataFrame with selected and transformed columns.
     """
     df = spark.readStream.table("bronze_postgres_vehicle").select(
-        col("id").alias("bk_vehicle_id"),
+        sha1(upper(trim(col("id")))).alias("bk_vehicle_id"),
         lit(current_timestamp()).alias("load_ts"),
         col("postgres").alias("source"),
         col("id").alias("id"),
@@ -47,21 +47,3 @@ def raw_vw_by_postgres_vehicle():
         ).alias("car_classification"),
     )
     return df
-
-if __name__ == "__main__":
-    # Create a SparkSession
-    spark = SparkSession.builder.appName("RawVWByPostgresVehicle").getOrCreate()
-
-    # Assuming you have a streaming table named "bronze_postgres_vehicle"
-    # You would typically configure the SparkSession for your specific environment
-    # (e.g., connecting to a data source like Kafka or a database).
-
-    # Example of how to use the function (for demonstration purposes only)
-    transformed_df = raw_vw_by_postgres_vehicle(spark)
-
-    # In a real streaming application, you would define how to process the streaming DataFrame
-    # For example, writing it to another sink or performing further transformations.
-    transformed_df.writeStream.outputMode("append").format("console").start().awaitTermination()
-
-    # Stop the SparkSession
-    spark.stop()
