@@ -10,3 +10,7 @@
 
 ## Power BI
     Conecta direto no Photon
+
+### SELECT - TRICKS
+    SELECT *, _metadata FROM '/mnt/files/business' - Pega os metadados do arquivo
+
